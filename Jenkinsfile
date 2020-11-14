@@ -25,5 +25,26 @@ pipeline {
                 sh 'docker-compose down'
             }
         }
+        stage("Build an ansible nginx webserver") {
+            steps {
+                sh 'ansible-playbook nginx.yml'
+                sleep(15)
+                sh 'ansible-playbook remove.yml'
+            }
+        }
+        stage("Build a terraform nginx webserver") {
+            steps {
+                sh '''
+                terraform init
+                terraform apply -auto-approve=true
+                '''
+                sleep(15)
+                sh '''
+                terraform destroy
+                rm -rf localhost.pem
+                rm -rf localhost-key.pem
+                '''
+            }
+        }
     }
 }
