@@ -11,10 +11,17 @@ pipeline {
                 '''
                 sleep(2)
                 sh '''
-                curl http://hello:80
+                //curl http://hello:80
                 docker rm hello -f
                 docker rmi nginxhello:0.0.1
                 '''
+            }
+        }
+        stage("Build a docker-compose nginx webserver") {
+            steps {
+                sh 'docker-compose up -d --build'
+                sleep(15)
+                sh 'docker-compose down'
             }
         }
     }
