@@ -6,6 +6,7 @@ pipeline {
                 sh '''
                 docker build -t nginxhello:0.0.1 .
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
+				curl http://40.113.153.104:80
                 '''
                 sleep(2)
                 sh '''
