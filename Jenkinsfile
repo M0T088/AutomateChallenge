@@ -8,7 +8,7 @@ pipeline {
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
 				curl http://40.113.153.104:80
                 '''
-                sleep(1)
+                sleep(3)
                 sh '''
                 docker rm hello -f
                 docker rmi nginxhello:0.0.1
