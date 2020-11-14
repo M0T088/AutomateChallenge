@@ -44,6 +44,7 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
+                docker ps
                 '''
                 sleep(15)
                 sh '''
