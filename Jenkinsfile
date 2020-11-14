@@ -16,7 +16,11 @@ pipeline {
         }
         stage("Build a docker-compose nginx webserver") {
             steps {
-                sh 'docker-compose up -d --build'
+                sh '''
+                cp /var/jenkins_home/localhost.pem ${WORKSPACE}/localhost.pem
+                cp /var/jenkins_home/localhost-key.pem ${WORKSPACE}/localhost-key.pem
+                docker-compose up -d --build
+                '''
                 sleep(15)
                 sh 'docker-compose down'
             }
