@@ -1,0 +1,99 @@
+---
+  - name: Ansible nginx webserver
+    hosts: localhost
+    tasks:
+    - name: Build docker images
+      block:
+        - name: Build loadbalancer image
+          docker_image:
+            name: nginxloadbalancer:latest
+            build:
+              path: nginx
+              pull: no
+            push: no
+            source: build
+
+        - name: Build hello1 image
+          docker_image:
+            name: hello:v1
+            build:
+              path: hello1
+              pull: no
+            push: no
+            source: build
+
+        - name: Build hello2 image
+          docker_image:
+            name: hello:v2
+            build:
+              path: hello2
+              pull: no
+            push: no
+            source: build
+        
+    - name: Create network
+      docker_network:
+        name: nginxweb
+
+    - name: Create docker container
+      block:
+        - name: hello1 docker container
+          docker_container:
+            name: hello1
+            image: hello:v1
+            state: started
+            recreate: yes
+            purge_networks: yes
+            networks_cli_compatible: yes
+            networks:
+              - name: nginxweb
+                aliases: 
+                  - webserver
+                links:
+                  - nginxlb 
+
+        - name: hello2 docker container
+          docker_container:
+            name: hello2
+            image: hello:v2
+            state: started
+            recreate: yes
+            purge_networks: yes
+            networks_cli_compatible: yes
+            networks:
+              - name: nginxweb
+                aliases: 
+                  - webserver
+                links:
+                  - nginxlb 
+
+        - name: nginxlb docker container
+          docker_container:
+            name: nginxlb
+            image: nginxloadbalancer:latest
+            state: started
+            recreate: yes
+            published_ports:
+              - 80:80
+              - 443:443
+            volumes:
+              - ./localhost.pem:/etc/nginx/localhost.pem
+              - ./localhost-key.pem:/etc/nginx/localhost-key.pem
+            networks_cli_compatible: yes
+            networks:
+              - name: nginxweb
+
+    - name: Using wget to make https requests
+      uri:
+        url: https://localhost
+        method: GET
+        return_content: yes
+        status_code: 200
+        body_format: json
+        validate_certs: no
+      register: this
+      retries: 5
+      delay: 1
+      #failed_when: "'Hello World' not in this.content"
+    - name: show list
+      debug: var=this
