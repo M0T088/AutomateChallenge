@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        any
-    }
+    agent any
     stages {
         stage("Build a nginx docker webserver port 80") {
             steps {
