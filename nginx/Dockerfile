@@ -1,3 +1,4 @@
 FROM nginx:latest
-RUN rm /etc/nginx/conf.d/default.conf
-COPY config.conf /etc/nginx/conf.d/default.conf
+COPY conf/default.conf /etc/nginx/conf.d/default.conf
+COPY keys/localhost.pem /etc/nginx/localhost.pem
+COPY keys/localhost-key.pem /etc/nginx/localhost-key.pem

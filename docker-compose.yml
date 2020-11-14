@@ -20,9 +20,6 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes:
-      - ./localhost.pem:/etc/nginx/localhost.pem
-      - ./localhost-key.pem:/etc/nginx/localhost-key.pem
     depends_on:
       - hello1
       - hello2

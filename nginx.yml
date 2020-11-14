@@ -76,9 +76,6 @@
             published_ports:
               - 80:80
               - 443:443
-            volumes:
-              - ./localhost.pem:/etc/nginx/localhost.pem
-              - ./localhost-key.pem:/etc/nginx/localhost-key.pem
             networks_cli_compatible: yes
             networks:
               - name: nginxweb
@@ -94,6 +91,7 @@
       register: this
       retries: 5
       delay: 1
-      #failed_when: "'Hello World' not in this.content"
+      failed_when: "'Hello World' not in this.content"
+      
     - name: show list
       debug: var=this

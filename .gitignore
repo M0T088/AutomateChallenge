@@ -40,4 +40,4 @@ override.tf.json
 terraform.rc
 
 # Ignore Keys
-*.pem
+/nginx/keys/*.pem
