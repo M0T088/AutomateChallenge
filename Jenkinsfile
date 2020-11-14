@@ -22,6 +22,8 @@ pipeline {
                 cp /var/jenkins_home/localhost.pem ${WORKSPACE}/nginx/localhost.pem
                 cp /var/jenkins_home/localhost-key.pem ${WORKSPACE}/nginx/localhost-key.pem
                 docker-compose up -d --build
+                curl -k https://40.113.153.104
+                curl -k https://40.113.153.104
                 '''
                 sleep(15)
                 sh 'docker-compose down'
@@ -29,7 +31,11 @@ pipeline {
         }
         stage("Build an ansible nginx webserver") {
             steps {
-                sh 'ansible-playbook nginx.yml'
+                sh '''
+                ansible-playbook nginx.yml
+                curl -k https://40.113.153.104
+                curl -k https://40.113.153.104
+                '''
                 sleep(15)
                 sh 'ansible-playbook remove.yml'
             }
