@@ -8,7 +8,7 @@ pipeline {
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
 				curl http://40.113.153.104:80
                 '''
-                sleep(2)
+                sleep(1)
                 sh '''
                 docker rm hello -f
                 docker rmi nginxhello:0.0.1
@@ -24,7 +24,7 @@ pipeline {
                 curl -k https://40.113.153.104
                 curl -k https://40.113.153.104
                 '''
-                sleep(15)
+                sleep(4)
                 sh 'docker-compose down'
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                 curl -k https://40.113.153.104
                 curl -k https://40.113.153.104
                 '''
-                sleep(15)
+                sleep(4)
                 sh 'ansible-playbook remove.yml'
             }
         }
@@ -44,9 +44,10 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
-                docker ps
+                curl http://40.113.153.104:8081
+                curl http://40.113.153.104:8082
                 '''
-                sleep(15)
+                sleep(5)
                 sh '''
                 terraform destroy -auto-approve=true
                 rm -rf localhost.pem
