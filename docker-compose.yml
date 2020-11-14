@@ -1,0 +1,28 @@
+version: 2.1
+
+services:
+
+  hello1:
+    build: ./hello1
+    container_name: hello1
+    ports:
+      - 8081:80
+  
+  hello2:
+    build: ./hello2
+    container_name: hello2
+    ports:
+      - 8082:80
+  
+  nginxlb:
+    build: ./nginx
+    container_name: nginxlb
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./etc/ssl/certs/:/etc/nginx/
+      - ./etc/ssl/private/:etc/nginx/
+    depends_on:
+      - hello1
+      - hello2
