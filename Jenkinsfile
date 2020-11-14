@@ -4,10 +4,10 @@ pipeline {
         stage("Build a nginx docker webserver port 80") {
             steps {
                 sh '''
-				docker rm hello -f
 				docker rm hello1 -f
 				docker rm hello2 -f
 				docker rm nginxlb -f
+				docker network rm nginxweb
                 docker build -t nginxhello:0.0.1 .
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
                 '''
@@ -44,7 +44,7 @@ pipeline {
                 '''
                 sleep(15)
                 sh '''
-                terraform destroy
+                terraform destroy -auto-approve=true
                 rm -rf localhost.pem
                 rm -rf localhost-key.pem
                 '''
