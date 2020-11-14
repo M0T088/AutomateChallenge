@@ -7,7 +7,7 @@ pipeline {
                 docker rm hello -f
                 docker build -t nginxhello:0.0.1 .
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
-				curl -s http://40.113.153.104:80 | sed -e 's/<\/?[^>]*>//g'
+				curl -s http://40.113.153.104:80 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(3)
                 sh '''
