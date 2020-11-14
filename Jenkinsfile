@@ -11,7 +11,6 @@ pipeline {
                 '''
                 sleep(2)
                 sh '''
-                //curl http://hello:80
                 docker rm hello -f
                 docker rmi nginxhello:0.0.1
                 '''
