@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh '''
                 docker build -t nginxhello:0.0.1 .
-                docker run --name hello -d -p 80:80 nginxhello:0.0.1
+                docker top hello || docker run --name hello -d -p 80:80 nginxhello:0.0.1
                 '''
                 sleep(2)
                 sh '''
