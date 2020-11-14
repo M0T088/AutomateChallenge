@@ -1,4 +1,4 @@
-version: 2.1
+version: "2.1"
 
 services:
 
@@ -21,8 +21,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./etc/ssl/certs/:/etc/nginx/
-      - ./etc/ssl/private/:etc/nginx/
+      - ./localhost.pem:/etc/nginx/localhost.pem
+      - ./localhost-key.pem:/etc/nginx/localhost-key.pem
     depends_on:
       - hello1
       - hello2
