@@ -14,6 +14,16 @@ resource "docker_image" "nginx" {
   keep_locally = true
 }
 
+resource "docker_image" "hello" {
+  name = "hello"
+  keep_locally = true
+}
+
+resource "docker_image" "nginxlb" {
+  name = "nginxloadbalancer"
+  keep_locally = true
+}
+
 # Create hello1 docker container 
 resource "docker_container" "hello1" {
   image = docker_image.hello.v1
