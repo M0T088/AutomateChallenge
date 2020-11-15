@@ -8,25 +8,19 @@ resource "docker_network" "nginxweb" {
   name = "nginxweb"
 }
 
-# Use nginx docker image als resource without deleting it afterwards
-resource "docker_image" "nginx" {
-  name = "nginx"
-  keep_locally = true
-}
-
+# Reuse hello1 image from Ansible script before
 resource "docker_image" "hello1" {
   name = "hello1"
-  keep_locally = true
 }
 
+# Reuse hello2 image from Ansible script before
 resource "docker_image" "hello2" {
   name = "hello2"
-  keep_locally = true
 }
 
+# Reuse nginxlb image from Ansible script before
 resource "docker_image" "nginxloadbalancer" {
   name = "nginxloadbalancer"
-  keep_locally = true
 }
 
 # Create hello1 docker container 
