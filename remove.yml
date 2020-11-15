@@ -17,23 +17,23 @@
         name: nginxlb
         state: absent
 
-    - name: Remove loadbalancer image
-      docker_image:
-        state: absent
-        name: nginxloadbalancer:latest
-        tag: latest
+    #- name: Remove loadbalancer image
+    #  docker_image:
+    #    state: absent
+    #    name: nginxloadbalancer:latest
+    #    tag: latest
 
-    - name: Remove hello1 image
-      docker_image:
-        state: absent
-        name: hello:v1
-        tag: latest
+    #- name: Remove hello1 image
+    #  docker_image:
+    #    state: absent
+    #    name: hello:v1
+    #    tag: latest
 
-    - name: Remove hello2 image
-      docker_image:
-        state: absent
-        name: hello:v2
-        tag: latest
+    #- name: Remove hello2 image
+    #  docker_image:
+    #    state: absent
+    #    name: hello:v2
+    #    tag: latest
 
     - name: remove nginxweb network
       docker_network:
