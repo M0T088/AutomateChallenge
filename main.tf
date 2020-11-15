@@ -50,7 +50,7 @@ resource "docker_container" "nginxlb" {
   }
   ports {
     internal = "443"
-    external = "443"
+    external = "500"
     protocol = "tcp"
     ip = "0.0.0.0"
   }
