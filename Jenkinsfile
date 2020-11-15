@@ -21,8 +21,8 @@ pipeline {
                 cp /var/jenkins_home/localhost.pem ${WORKSPACE}/nginx/localhost.pem
                 cp /var/jenkins_home/localhost-key.pem ${WORKSPACE}/nginx/localhost-key.pem
                 docker-compose up -d --build
-                curl -k https://challenge.westeurope.cloudapp.azure.com.104 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com.104 | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(4)
                 sh 'docker-compose down'
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 sh '''
                 ansible-playbook nginx.yml
-                curl -k https://challenge.westeurope.cloudapp.azure.com.104 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com.104 | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(4)
                 sh 'ansible-playbook remove.yml'
