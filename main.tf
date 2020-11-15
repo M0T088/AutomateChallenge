@@ -46,7 +46,7 @@ resource "docker_container" "hello2" {
   }
 } 
 
-resource "docker_container" "nginxlb" {
+/* resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest
   name = "nginxlb"
   volumes {
@@ -70,4 +70,4 @@ resource "docker_container" "nginxlb" {
     protocol = "tcp"
     ip = "0.0.0.0"
   }
-}
+} */
