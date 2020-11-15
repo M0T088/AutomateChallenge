@@ -3,9 +3,9 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
-resource "docker_network" "nginxweb" {
+/* resource "docker_network" "nginxweb" {
   name = "nginxweb"
-}
+} */
 
 resource "docker_image" "nginx" {
   name = "nginx"
@@ -20,10 +20,16 @@ resource "docker_container" "hello1" {
     container_path = "/usr/share/nginx/html"
     read_only = true
   }
-  network_mode = "nginxweb"
+  // network_mode = "nginxweb"
+  ports {
+    internal = "443"
+    external = "500"
+    protocol = "tcp"
+    ip = "0.0.0.0"
+  }
 } 
 
-resource "docker_container" "hello2" {
+/* resource "docker_container" "hello2" {
   image = docker_image.nginx.latest
   name = "hello2"
   volumes {
@@ -32,7 +38,7 @@ resource "docker_container" "hello2" {
     read_only = true
   }
   network_mode = "nginxweb"
-} 
+} */
 
 /* resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest

@@ -8,7 +8,7 @@ pipeline {
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
 				curl -s challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
                 '''
-                sleep(6)
+                sleep(10)
                 sh '''
                 docker rm hello -f
                 docker rmi nginxhello:0.0.1
@@ -24,7 +24,7 @@ pipeline {
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
-                sleep(8)
+                sleep(15)
                 sh 'docker-compose down'
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
-                sleep(8)
+                sleep(15)
                 sh 'ansible-playbook remove.yml'
             }
         }
@@ -47,7 +47,7 @@ pipeline {
                 curl http://challenge.westeurope.cloudapp.azure.com:8081 | sed -e 's/<[^>]*>//g'
                 curl http://challenge.westeurope.cloudapp.azure.com:8082 | sed -e 's/<[^>]*>//g'
                 '''
-                sleep(9)
+                sleep(16)
                 sh '''
                 terraform destroy -auto-approve=true
                 rm -rf nginxcert.pem
