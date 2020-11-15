@@ -19,7 +19,7 @@ resource "docker_container" "hello1" {
   image = docker_image.nginx.latest
   name = "hello1"
   volumes {
-    host_path = "${abspath(path.root)}/hello1"
+    host_path = "${abspath(path.cwd)}/hello1"
     container_path = "/usr/share/nginx/html"
     read_only = true
   }
@@ -34,7 +34,7 @@ resource "docker_container" "hello2" {
   image = docker_image.nginx.latest
   name = "hello2"
   volumes {
-    host_path = "${abspath(path.root)}/hello2"
+    host_path = "${abspath(path.cwd)}/hello2"
     container_path = "/usr/share/nginx/html"
     read_only = true
   }
@@ -49,7 +49,7 @@ resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest
   name = "nginxlb"
   volumes {
-    host_path = "${abspath(path.root)}/nginx"
+    host_path = "${abspath(path.cwd)}/nginx"
     container_path = "/etc/nginx"
     read_only = true
   }
