@@ -48,7 +48,7 @@ pipeline {
                 '''
                 sleep(3)
 				sh 'docker ps'
-				sleep(10)
+				sleep(120)
                 sh '''
                 terraform destroy -auto-approve=true
                 rm -rf nginxcert.pem

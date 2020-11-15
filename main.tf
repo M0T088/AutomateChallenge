@@ -23,6 +23,9 @@ resource "docker_container" "hello1" {
     container_path = "/usr/share/nginx/html"
     read_only = true
   }
+  ports {
+    internal = "80"
+  }
   network_mode = "nginxweb"
 } 
 
@@ -35,6 +38,9 @@ resource "docker_container" "hello2" {
     container_path = "/usr/share/nginx/html"
     read_only = true
   }
+  ports {
+    internal = "80"
+  }
   network_mode = "nginxweb"
 }
 
@@ -45,6 +51,7 @@ resource "docker_container" "nginxlb" {
   volumes {
     host_path = "${abspath(path.root)}/nginx"
     container_path = "/etc/nginx"
+    read_only = true
   }
   network_mode = "nginxweb"
   ports {
