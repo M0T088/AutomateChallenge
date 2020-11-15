@@ -18,13 +18,12 @@ resource "docker_container" "hello1" {
   volumes {
     host_path = "${abspath(path.root)}/hello1"
     container_path = "/usr/share/nginx/html"
+    read_only = true
   }
   network_mode = "nginxweb"
   ports {
     internal = "80"
     external = "8081"
-    protocol = "tcp"
-    ip = "0.0.0.0"
   }
 } 
 
@@ -34,13 +33,12 @@ resource "docker_container" "hello2" {
   volumes {
     host_path = "${abspath(path.root)}/hello2"
     container_path = "/usr/share/nginx/html"
+    read_only = true
   }
   network_mode = "nginxweb"
   ports {
     internal = "80"
     external = "8082"
-    protocol = "tcp"
-    ip = "0.0.0.0"
   }
 } 
 
