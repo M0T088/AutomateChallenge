@@ -15,7 +15,7 @@
 
         - name: Build hello1 image
           docker_image:
-            name: hello:v1
+            name: hello1
             build:
               path: hello1
               pull: no
@@ -24,7 +24,7 @@
 
         - name: Build hello2 image
           docker_image:
-            name: hello:v2
+            name: hello2
             build:
               path: hello2
               pull: no
@@ -40,7 +40,7 @@
         - name: hello1 docker container
           docker_container:
             name: hello1
-            image: hello:v1
+            image: hello1
             state: started
             recreate: yes
             purge_networks: yes
@@ -55,7 +55,7 @@
         - name: hello2 docker container
           docker_container:
             name: hello2
-            image: hello:v2
+            image: hello2
             state: started
             recreate: yes
             purge_networks: yes
