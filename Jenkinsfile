@@ -33,7 +33,7 @@ pipeline {
                 sh '''
                 ansible-playbook nginx.yml
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(4)
                 sh 'ansible-playbook remove.yml'
