@@ -50,7 +50,6 @@ pipeline {
                 sleep(17)
                 sh '''
                 terraform destroy -auto-approve=true
-				docker image prune -f
                 rm -rf nginxcert.pem
                 rm -rf nginxkey.pem
                 '''
