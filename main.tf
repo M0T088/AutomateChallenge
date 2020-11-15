@@ -18,7 +18,6 @@ resource "docker_container" "hello1" {
   volumes {
     host_path = "${abspath(path.root)}/hello1"
     container_path = "/usr/share/nginx/html"
-    read_only = true
   }
   network_mode = "nginxweb"
   ports {
@@ -35,7 +34,6 @@ resource "docker_container" "hello2" {
   volumes {
     host_path = "${abspath(path.root)}/hello2"
     container_path = "/usr/share/nginx/html"
-    read_only = true
   }
   network_mode = "nginxweb"
   ports {
@@ -46,7 +44,7 @@ resource "docker_container" "hello2" {
   }
 } 
 
-resource "docker_container" "nginxlb" {
+/* resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest
   name = "nginxlb"
   volumes {
@@ -70,4 +68,4 @@ resource "docker_container" "nginxlb" {
     protocol = "tcp"
     ip = "0.0.0.0"
   }
-}
+} */
