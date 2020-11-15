@@ -1,4 +1,4 @@
-String curls = 'curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g''
+String curls = "curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'"
 pipeline {
     agent any
     stages {
