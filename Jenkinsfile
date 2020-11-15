@@ -42,8 +42,8 @@ pipeline {
         stage("Build a terraform nginx webserver") {
             steps {
                 sh '''
-                terraform init
-                terraform apply -auto-approve=true
+                terraform init -input=false
+                terraform apply -input=false -auto-approve=true
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(3)
