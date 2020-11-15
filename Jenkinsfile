@@ -18,6 +18,7 @@ pipeline {
         stage("Build a docker-compose nginx webserver") {
             steps {
                 sh '''
+				docker rm hello -f
 				docker rm hello1 -f
 				docker rm hello2 -f
 				docker rm nginxlb -f
