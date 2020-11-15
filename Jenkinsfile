@@ -25,7 +25,7 @@ pipeline {
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(15)
-                sh 'docker-compose down'
+                sh 'docker-compose down --rmi all'
             }
         }
         stage("Build an ansible nginx webserver") {
