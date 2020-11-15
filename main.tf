@@ -54,4 +54,4 @@ resource "docker_container" "hello2" {
     protocol = "tcp"
     ip = "0.0.0.0"
   }
-} /*
+} */
