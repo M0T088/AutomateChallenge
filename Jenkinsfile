@@ -1,4 +1,3 @@
-String curls = "curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'"
 pipeline {
     agent any
     stages {
@@ -22,8 +21,8 @@ pipeline {
                 cp /var/jenkins_home/nginxcert.pem ${WORKSPACE}/nginx/nginxcert.pem
                 cp /var/jenkins_home/nginxkey.pem ${WORKSPACE}/nginx/nginxkey.pem
                 docker-compose up -d --build
-                'curls'
-                'curls'
+                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(8)
                 sh 'docker-compose down'
@@ -33,8 +32,8 @@ pipeline {
             steps {
                 sh '''
                 ansible-playbook nginx.yml
-                'curls'
-                'curls'
+                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(8)
                 sh 'ansible-playbook remove.yml'
@@ -45,7 +44,8 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
-                'curls'
+                curl http://challenge.westeurope.cloudapp.azure.com:8081 | sed -e 's/<[^>]*>//g'
+                curl http://challenge.westeurope.cloudapp.azure.com:8082 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(9)
                 sh '''
