@@ -22,8 +22,8 @@ pipeline {
                 cp /var/jenkins_home/nginxcert.pem ${WORKSPACE}/nginx/nginxcert.pem
                 cp /var/jenkins_home/nginxkey.pem ${WORKSPACE}/nginx/nginxkey.pem
                 docker-compose up -d --build
-                curls
-                curls
+                'curls'
+                'curls'
                 '''
                 sleep(8)
                 sh 'docker-compose down'
@@ -33,8 +33,8 @@ pipeline {
             steps {
                 sh '''
                 ansible-playbook nginx.yml
-                curls
-                curls
+                'curls'
+                'curls'
                 '''
                 sleep(8)
                 sh 'ansible-playbook remove.yml'
@@ -45,7 +45,7 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
-                curls
+                'curls'
                 '''
                 sleep(9)
                 sh '''
