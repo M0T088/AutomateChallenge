@@ -79,19 +79,3 @@
             networks_cli_compatible: yes
             networks:
               - name: nginxweb
-
-    #- name: Using wget to make https requests
-    #  uri:
-    #    url: https://localhost
-    #    method: GET
-    #    return_content: yes
-    #    status_code: 200
-    #    body_format: json
-    #    validate_certs: no
-    #  register: this
-    #  retries: 5
-    #  delay: 1
-    #  failed_when: "'Hello World' not in this.content"
-      
-    #- name: show list
-    #  debug: var=this

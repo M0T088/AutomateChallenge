@@ -1,19 +1,19 @@
-version: "2.1"
+version: "3.8"
 
 services:
-
+  # Create hello1 docker container and expose port 80 internally
   hello1:
     build: ./hello1
     container_name: hello1
     expose:
       - 80
-  
+  # Create hello2 docker container
   hello2:
     build: ./hello2
     container_name: hello2
     expose:
       - 80
-  
+  # Create nginx loadbalancer docker container at external port 500 for SSL - waits for hello1 & 2
   nginxlb:
     build: ./nginx
     container_name: nginxlb

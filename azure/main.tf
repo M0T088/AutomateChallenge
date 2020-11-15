@@ -1,15 +1,7 @@
 provider "azurerm" {
     version = "~>2.0"
     features {}
-}
-
-provider "azurestack" {
-  arm_endpoint    = "${var.arm_endpoint}"
-  subscription_id = "${var.subscription_id}"
-  client_id       = "${var.client_id}"
-  client_secret   = "${var.client_secret}"
-  tenant_id       = "${var.tenant_id}"
-}
+}s
 
 resource "azurerm_resource_group" "automatechallenge" {
     name     = "myChallenge"
@@ -114,7 +106,6 @@ resource "azurerm_network_interface" "vmwebint" {
     }
 }
 
-# Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "example" {
     network_interface_id      = azurerm_network_interface.vmwebint.id
     network_security_group_id = azurerm_network_security_group.vmwebnsg.id

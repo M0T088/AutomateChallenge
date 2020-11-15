@@ -10,10 +10,7 @@ if(!(jenkins.getSecurityRealm() instanceof HudsonPrivateSecurityRealm))
 if(!(jenkins.getAuthorizationStrategy() instanceof FullControlOnceLoggedInAuthorizationStrategy))
    jenkins.setAuthorizationStrategy(new FullControlOnceLoggedInAuthorizationStrategy())
 
-// create new Jenkins user account
-// username & password from environment variables
 def user = jenkins.getSecurityRealm().createAccount(env.JENKINS_USER, env.JENKINS_PASS)
 user.save()
 jenkins.getAuthorizationStrategy().add(Jenkins.ADMINISTER, env.JENKINS_USER)
-
 jenkins.save()

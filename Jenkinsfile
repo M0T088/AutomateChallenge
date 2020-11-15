@@ -6,7 +6,7 @@ pipeline {
                 sh '''
                 docker build -t nginxhello:0.0.1 .
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
-				curl -s challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
+				curl challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(10)
                 sh '''

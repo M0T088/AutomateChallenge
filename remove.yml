@@ -2,12 +2,12 @@
 - name: Remove Nginx Container
   hosts: localhost
   tasks:
-    - name: Stop nginx containers
+    - name: Stop hello1 container
       docker_container:
         name: hello1
         state: absent
     
-    - name: Stop nginx containers
+    - name: Stop hello2 container
       docker_container:
         name: hello2
         state: absent
@@ -17,25 +17,25 @@
         name: nginxlb
         state: absent
 
-    - name: Remove image
+    - name: Remove loadbalancer image
       docker_image:
         state: absent
         name: nginxloadbalancer:latest
         tag: latest
 
-    - name: Remove image webapp
+    - name: Remove hello1 image
       docker_image:
         state: absent
         name: hello:v1
         tag: latest
 
-    - name: Remove image webapp2
+    - name: Remove hello2 image
       docker_image:
         state: absent
         name: hello:v2
         tag: latest
 
-    - name: remove network
+    - name: remove nginxweb network
       docker_network:
         state: absent
         name: nginxweb
