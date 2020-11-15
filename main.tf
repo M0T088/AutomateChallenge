@@ -21,13 +21,9 @@ resource "docker_container" "hello1" {
     read_only = true
   }
   network_mode = "nginxweb"
-  ports {
-    internal = "80"
-    external = "80"
-  }
 } 
 
-/* resource "docker_container" "hello2" {
+resource "docker_container" "hello2" {
   image = docker_image.nginx.latest
   name = "hello2"
   volumes {
@@ -36,13 +32,9 @@ resource "docker_container" "hello1" {
     read_only = true
   }
   network_mode = "nginxweb"
-  ports {
-    internal = "80"
-    external = "8082"
-  }
-} /*
+} 
 
-/* resource "docker_container" "nginxlb" {
+resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest
   name = "nginxlb"
   volumes {
@@ -66,4 +58,4 @@ resource "docker_container" "hello1" {
     protocol = "tcp"
     ip = "0.0.0.0"
   }
-} */
+}
