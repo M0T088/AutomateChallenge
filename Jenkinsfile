@@ -46,7 +46,9 @@ pipeline {
                 terraform apply -auto-approve=true
                 curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
-                sleep(16)
+                sleep(3)
+				sh 'docker ps'
+				sleep(10)
                 sh '''
                 terraform destroy -auto-approve=true
                 rm -rf nginxcert.pem
