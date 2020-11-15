@@ -41,6 +41,7 @@ terraform.rc
 
 # Ignore Keys
 /nginx/keys/*.pem
+/nginx/*.pem
 /aws/*key*
 /azure/*.pem
 azure/
