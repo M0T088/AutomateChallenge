@@ -4,6 +4,7 @@ pipeline {
         stage("Build a nginx docker webserver port 80") {
             steps {
                 sh '''
+				docker rm hello -f
                 docker build -t nginxhello:0.0.1 .
                 docker run --name hello -d -p 80:80 nginxhello:0.0.1
 				curl -s challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
@@ -18,7 +19,6 @@ pipeline {
         stage("Build a docker-compose nginx webserver") {
             steps {
                 sh '''
-				docker rm hello -f
 				docker rm hello1 -f
 				docker rm hello2 -f
 				docker rm nginxlb -f
