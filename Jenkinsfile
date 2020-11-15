@@ -20,6 +20,7 @@ pipeline {
                 sh '''
 				docker rm hello1 -f
 				docker rm hello2 -f
+				docker rm nginxlb -f
                 cp /var/jenkins_home/localhost.pem ${WORKSPACE}/nginx/localhost.pem
                 cp /var/jenkins_home/localhost-key.pem ${WORKSPACE}/nginx/localhost-key.pem
                 docker-compose up -d --build
