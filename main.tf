@@ -25,7 +25,7 @@ resource "docker_image" "hello2" {
 }
 
 resource "docker_image" "nginxloadbalancer" {
-  name = "nginxlb"
+  name = "nginxloadbalancer"
   keep_locally = true
 }
 
@@ -50,7 +50,7 @@ resource "docker_container" "hello2" {
 }
 
 # Create hello2 docker container 
-resource "docker_container" "nginxlb" {
+resource "docker_container" "nginxloadbalancer" {
   image = docker_image.nginxloadbalancer.latest
   name = "nginxlb"
   ports {
