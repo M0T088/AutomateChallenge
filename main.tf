@@ -31,7 +31,7 @@ resource "docker_image" "nginxloadbalancer" {
 
 # Create hello1 docker container 
 resource "docker_container" "hello1" {
-  image = docker_image.hello1
+  image = docker_image.hello1.latest
   name = "hello1"
   ports {
     internal = "80"
@@ -41,7 +41,7 @@ resource "docker_container" "hello1" {
 
 # Create hello2 docker container 
 resource "docker_container" "hello2" {
-  image = docker_image.hello2
+  image = docker_image.hello2.latest
   name = "hello2"
   ports {
     internal = "80"
