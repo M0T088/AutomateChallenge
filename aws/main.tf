@@ -1,3 +1,4 @@
+# Terraform AWS EC2 Erstellung mit docker script, der Jenkins mit vorinstallierten Plugins deployt
 provider "aws" {
   region = "us-east-2"
 }

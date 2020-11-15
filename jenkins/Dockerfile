@@ -1,3 +1,4 @@
+# Ursprungsimage mit JDK11
 FROM jenkins/jenkins:jdk11
 USER root
 
@@ -9,7 +10,7 @@ RUN apt-get update && apt-get install -y && \
   # sshpass ist notwendig für ssh Befehle in Ansible
   apt-get install sshpass && \
   
-  # Installation von Python 3.7 und dem Pip Modul
+  # Installation von Python 3.5/3.7 und dem Pip Modul
   apt-get install python3-pip -y && \
   
   # Installation von Terraform via wget
@@ -20,7 +21,7 @@ RUN apt-get update && apt-get install -y && \
   # Ansible Installation in der aktuellsten Version
   pip3 install ansible --upgrade && \
   
-  # Docker SDK inkl. Docker CLI für Docker commands innerhalb von Jenkins
+  # Docker SDK inkl. Docker CLI für Docker Commands innerhalb von Jenkins
   pip3 install docker && \
   
   # Docker-compose
@@ -29,10 +30,10 @@ RUN apt-get update && apt-get install -y && \
   # lxml ist relevant für die Ansible Galaxy Collection, um z.B. ein .war file von Nexus zu ziehen und zu deployen
   pip3 install lxml && \
   
-  # Angesprochene Ansible Plugins, die Ansible um zahlreiche Befehle z.B. für Maven erweitern
+  # Ansible Plugins, die Ansible um zahlreiche Befehle z.B. für Kubernetes erweitern
   ansible-galaxy collection install community.general && \
   
-  # Optionales Modul für Azure & Ansible, Funktion noch nicht getestet
+  # Optionales Modul für Azure & Ansible, der vollständigskeitshalber integriert
   ansible-galaxy install Azure.azure_preview_modules && \
   pip3 install -r ~/.ansible/roles/Azure.azure_preview_modules/files/requirements-azure.txt && \
   
@@ -40,11 +41,12 @@ RUN apt-get update && apt-get install -y && \
   apt-get upgrade -y && \
   apt-get update
 
-# Ansible Configuration Datei wird hinzugefügt - Mit dieser können verschiedene Warnings beispielsweise ausgeschaltet werden
+# Ansible Configuration Datei wird hinzugefügt 
 COPY ansible/ansible.cfg etc/ansible/ansible.cfg
 
 USER jenkins
 
+# Initialisierung von Jenkins mit Standardpasswort und Deaktivierung des Setup Wizards / Plugins werden automatisch installiert bei Erstellung
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false

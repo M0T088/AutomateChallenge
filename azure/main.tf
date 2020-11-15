@@ -1,3 +1,4 @@
+# Nicht genutzte Terraform Datei zur Erstellung einer Azure VM Instanz
 provider "azurerm" {
     version = "~>2.0"
     features {}
