@@ -75,7 +75,7 @@
             recreate: yes
             published_ports:
               - 80:80
-              - 443:443
+              - 500:443
             networks_cli_compatible: yes
             networks:
               - name: nginxweb
