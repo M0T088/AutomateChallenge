@@ -38,11 +38,7 @@ resource "docker_container" "nginxlb" {
   image = docker_image.nginx.latest
   name = "nginxlb"
   volumes {
-    host_path = "${abspath(path.root)}/nginx/conf"
-    container_path = "/etc/nginx/conf.d"
-  }
-  volumes {
-    host_path = "${abspath(path.root)}/nginx/keys"
+    host_path = "${abspath(path.root)}/nginx"
     container_path = "/etc/nginx"
   }
   network_mode = "nginxweb"

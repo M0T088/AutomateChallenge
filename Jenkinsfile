@@ -44,8 +44,8 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
-                curl http://challenge.westeurope.cloudapp.azure.com:8081 | sed -e 's/<[^>]*>//g'
-                curl http://challenge.westeurope.cloudapp.azure.com:8082 | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
+                curl -k https://challenge.westeurope.cloudapp.azure.com | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(5)
                 sh '''
