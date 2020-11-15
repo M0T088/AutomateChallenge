@@ -18,11 +18,11 @@ pipeline {
         stage("Build a docker-compose nginx webserver") {
             steps {
                 sh '''
-                cp /var/jenkins_home/localhost.pem ${WORKSPACE}/nginx/localhost.pem
-                cp /var/jenkins_home/localhost-key.pem ${WORKSPACE}/nginx/localhost-key.pem
+                cp /var/jenkins_home/nginxcert.pem ${WORKSPACE}/nginx/nginxcert.pem
+                cp /var/jenkins_home/nginxkey.pem ${WORKSPACE}/nginx/nginxkey.pem
                 docker-compose up -d --build
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(4)
                 sh 'docker-compose down'
@@ -32,8 +32,8 @@ pipeline {
             steps {
                 sh '''
                 ansible-playbook nginx.yml
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(4)
                 sh 'ansible-playbook remove.yml'
@@ -44,14 +44,14 @@ pipeline {
                 sh '''
                 terraform init
                 terraform apply -auto-approve=true
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
-                curl -k https://challenge.westeurope.cloudapp.azure.com:500 | sed -e 's/<[^>]*>//g'
+                curl http://challenge.westeurope.cloudapp.azure.com:8081 | sed -e 's/<[^>]*>//g'
+                curl http://challenge.westeurope.cloudapp.azure.com:8082 | sed -e 's/<[^>]*>//g'
                 '''
                 sleep(5)
                 sh '''
                 terraform destroy -auto-approve=true
-                rm -rf localhost.pem
-                rm -rf localhost-key.pem
+                rm -rf nginxcert.pem
+                rm -rf nginxkey.pem
                 '''
             }
         }
