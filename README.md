@@ -2,13 +2,12 @@ Dieses Projekt beinhaltet den Versuch, einen Nginx Webserver mit dem Inhalt "Hel
 
 Die Bedingungen:
 
-- Der Webserver ist über Port 80 (entweder local oder über einer Public Cloud) mit dem Inhalt
-"Hello World" aufrufbar.
+- Die Initialsierung zur Erstellung des Webservers wird durch ein "git push" ausgelöst.
 
-- Im zweiten Schritt muss der Webserver ausschließlich über TLS/SSL erreichbar und das SSL          Zertifikat gültig sein
+- Der Webserver ist über Port 80 (entweder local oder über einer Public Cloud) mit dem Inhalt "Hello World!" aufrufbar.
 
-- Als drittes ist der Webserver als Docker Container zu deployen
+- Im zweiten Schritt muss der Webserver ausschließlich über TLS/SSL erreichbar und das SSL Zertifikat gültig sein.
 
-- Optional: Die Bereitstellung des Webservers über einer Pipeline
+- Als drittes ist der Webserver als Docker Container zu deployen.
 
-Die Vorgehensweise:
+- Optional: Die Bereitstellung des Webservers über einer Pipeline.
