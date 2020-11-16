@@ -11,3 +11,4 @@ Die Bedingungen:
 - Als drittes ist der Webserver als Docker Container zu deployen.
 
 - Optional: Die Bereitstellung des Webservers über einer Pipeline.
+
